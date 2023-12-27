@@ -15,5 +15,5 @@ int solution(int price) {
          discount = 0.2;
     }
     double answer = price - (price * discount);
-    return (int)answer;
+    return answer;
 }
