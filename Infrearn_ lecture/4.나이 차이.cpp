@@ -6,13 +6,9 @@ int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    
-    int i,n,old,input,young = 0;
+    int i,n,input,old = 0,young = 0;
 
-     cin>>n; 
-     cin>> old; 
-     young = old;      
-     
+     cin>>n;     
      for (i = 1; i < n; i++)
      {
         
