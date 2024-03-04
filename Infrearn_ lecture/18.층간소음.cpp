@@ -2,15 +2,17 @@
 
 int main(){
     int s=0,n,m,cnt=0;
+    int second[1001];
     scanf("%d",&n);
     scanf("%d",&m);
-    for (int i = 0; i < n; i++)
+    for(int i = 0;i<n;i++){
+        scanf("%d",&second[i]);
+    }
+    for (int i = 0; i!='\0'; i++)
     {
-        scanf("%d",&s);
-        if(s>m){
+        if(second[i-1]>m && second[i]>m){
             cnt++;
         }
-        s = 0;
     }
     
     
