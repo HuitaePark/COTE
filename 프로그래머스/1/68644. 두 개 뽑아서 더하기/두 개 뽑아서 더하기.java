@@ -1,22 +1,16 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] numbers) {
-        List<Integer> list = new ArrayList();
-        
+        TreeSet<Integer> set = new TreeSet<>();
         for(int i = 0;i<numbers.length;i++){
-            for(int j = 0;j<numbers.length;j++){
-                if(i==j){
-                    continue;
-                }
+            for(int j = i+1;j<numbers.length;j++){
                 int sum = numbers[i]+numbers[j];
-                if(!list.contains(sum)){
-                    list.add(sum);
-                }
+                set.add(sum);
             }
         }
-        int[] answer = new int[list.size()];
-        for(int i = 0; i < list.size(); i++) {
-            answer[i] = list.get(i);
+        int[] answer = new int[set.size()];
+        for(int i = 0; i<answer.length;i++){
+            answer[i] = set.pollFirst();
         }
         Arrays.sort(answer);
         return answer;
