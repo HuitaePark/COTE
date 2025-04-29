@@ -20,20 +20,13 @@ public class Main{
     for(int i=0;i<n;i++){
       bo.add(br.readLine());
     }
-    if(m>n){
+
       for(String str : bo){
         if(dt.contains(str)){
           list.add(str);
         }
       }
-    }
-    else{
-      for(String str : dt){
-        if(bo.contains(str)){
-          list.add(str);
-        }
-      }
-    }
+    
     
     Collections.sort(list);
     sb.append(list.size()+"\n");
