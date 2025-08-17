@@ -1,0 +1,6 @@
+SELECT DISTINCT cc.CAR_ID as CAR_ID
+from CAR_RENTAL_COMPANY_CAR CC
+Inner join CAR_RENTAL_COMPANY_RENTAL_HISTORY ch
+ on cc.CAR_ID = ch.CAR_ID
+where cc.CAR_TYPE = '세단' and ch.START_DATE between TO_DATE('2022-10-01','YYYY-MM-DD') and TO_DATE('2022-10-31','YYYY-MM-DD')
+order by CAR_ID desc;
