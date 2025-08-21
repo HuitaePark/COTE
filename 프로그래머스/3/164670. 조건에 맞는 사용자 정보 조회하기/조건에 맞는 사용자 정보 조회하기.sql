@@ -1,0 +1,16 @@
+SELECT
+    U.USER_ID,
+    U.NICKNAME,
+    U.CITY || ' ' || U.STREET_ADDRESS1 || ' ' || U.STREET_ADDRESS2 AS 전체주소,
+    REGEXP_REPLACE(U.TLNO, '(\d{3})(\d{4})(\d{4})', '\1-\2-\3') AS 전화번호
+FROM
+    USED_GOODS_USER U 
+WHERE
+    U.USER_ID IN (
+        SELECT WRITER_ID
+        FROM USED_GOODS_BOARD
+        GROUP BY WRITER_ID
+        HAVING COUNT(*) >= 3
+    )
+ORDER BY
+    U.USER_ID DESC;
