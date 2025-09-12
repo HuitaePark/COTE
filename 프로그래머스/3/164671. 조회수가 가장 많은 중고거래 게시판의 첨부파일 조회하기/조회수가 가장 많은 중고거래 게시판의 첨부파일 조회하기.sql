@@ -1,0 +1,18 @@
+SELECT 
+    '/home/grep/src/' || B.BOARD_ID || '/' || F.FILE_ID || F.FILE_NAME || F.FILE_EXT AS FILE_PATH
+from 
+    USED_GOODS_BOARD B
+INNER JOIN
+    USED_GOODS_FILE F
+ON 
+    B.BOARD_ID = F.BOARD_ID
+where B.BOARD_ID = (
+    SELECT BOARD_ID
+    FROM (
+        SELECT BOARD_ID
+        FROM USED_GOODS_BOARD
+        ORDER BY VIEWS DESC
+    )
+    WHERE ROWNUM = 1
+)
+order by FILE_ID DESC;
