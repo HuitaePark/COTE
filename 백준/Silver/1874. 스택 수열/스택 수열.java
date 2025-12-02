@@ -33,7 +33,7 @@ public class Main{
       else {
         int m = stack.pop();
 
-        if (m > current) {
+        if (m != current) {
           bw.write("NO\n");
           bw.flush();
           return;
