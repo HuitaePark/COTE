@@ -1,30 +1,36 @@
 import java.util.*;
 import java.io.*;
-
+  
 public class Main{
   public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
     StringTokenizer st = new StringTokenizer(br.readLine());
     long a = Long.parseLong(st.nextToken());
     long b = Long.parseLong(st.nextToken());
-    if(a > b) {
-      long temp = 0;
-      temp = b;
-      b = a;
-      a= temp;
-    }
-    if(a == b || b - a == 1){
-      bw.write(Long.toString(0)+"\n");
-    }
-    else{
-    bw.write(Long.toString(b-a-1)+"\n");
+    long start;
+    long end;
+    
+    if(a >b){
+      end = a;
+      start = b;
+    } 
+    else {      
+      end = b;
+      start = a;
     }
     
-    for(long i =a+1;i<b;i++){
-      bw.write(Long.toString(i)+" ");
-    }
-    
+    if(start == end) sb.append(0).append("\n");
+    else sb.append(end-start-1).append("\n");
+     
+    for(long i = start+1;i<end;i++){
+       sb.append(i).append(" ");
+     }
+
+
+    bw.write(sb.toString());
     bw.flush();
+  
   }
 }
