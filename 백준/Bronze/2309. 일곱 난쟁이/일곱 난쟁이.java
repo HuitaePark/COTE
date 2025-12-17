@@ -1,34 +1,42 @@
 import java.util.*;
 import java.io.*;
-
+  
 public class Main{
   public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
     int[] arr = new int[9];
-    
-    for(int i = 0;i<9;i++){
-      arr[i] = Integer.parseInt(br.readLine());
-    }
-    Arrays.sort(arr);
     int sum = 0;
-    for(int i : arr){
-      sum+=i;
+    for(int i =0;i<9;i++){
+      arr[i] = Integer.parseInt(br.readLine());
+      sum+=arr[i];
     }
+    
+    Arrays.sort(arr);
+    
     int spy1 = 0;
     int spy2 = 0;
-      for(int i = 0;i<9;i++){
-        for(int j = i+1;j<9;j++){
-          if(sum - (arr[i]+arr[j]) == 100){
-            spy1 = arr[i];
-            spy2 = arr[j];
-          }
+    
+    for(int i = 0;i<9;i++){
+      int current = sum - arr[i];
+      
+      for(int j = 0;j<9;j++){
+        if(i==j) continue;
+        if(current - arr[j] == 100){
+          spy1 = i;
+          spy2 = j;
+        }      
       }
     }
+
     for(int i = 0;i<9;i++){
-        if(arr[i] != spy1 && arr[i] != spy2)
-          bw.write(Integer.toString(arr[i])+"\n");
+      if(i == spy1 || i== spy2) continue;
+      sb.append(arr[i]).append("\n");
     }
+    
+    bw.write(sb.toString());
     bw.flush();
+  
   }
 }
