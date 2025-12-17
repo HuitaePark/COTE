@@ -1,17 +1,27 @@
-import java.util.Scanner;
-public class Main {
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
+import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    int a = Integer.parseInt(st.nextToken());
+    int b = Integer.parseInt(st.nextToken());
 
-        int a = s.nextInt();
-        int b = s.nextInt();
-        if(1 <= a || b<=10000)
-        {
-            System.out.println(a + b);
-            System.out.println(a - b);
-            System.out.println(a * b);
-            System.out.println(a / b);
-            System.out.println(a % b);
-        }
-    }
+    sb.append(a+b).append("\n");
+    sb.append(a-b).append("\n");
+    sb.append(a*b).append("\n");
+    sb.append(a/b).append("\n");
+    sb.append(a%b).append("\n");
+
+
+
+
+
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
