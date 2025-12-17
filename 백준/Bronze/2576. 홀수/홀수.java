@@ -1,34 +1,29 @@
 import java.util.*;
 import java.io.*;
-
+  
 public class Main{
   public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    int[] arr = new int[7];
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+
     int sum = 0;
-    int min = 0;
+    int min = Integer.MAX_VALUE;
     for(int i = 0;i<7;i++){
-      arr[i] = Integer.parseInt(br.readLine());
-    }
-    Arrays.sort(arr);
-    min = arr[6];
-    for(int i = 0;i<7;i++){
-      if(arr[i]%2==1){
-        sum += arr[i];
-        if(arr[i]<min)
-          min = arr[i];
+      int current = Integer.parseInt(br.readLine());
+      if(current%2==1){
+        sum+=current;
+        if(current<min) min = current;
       }
     }
-    
-    if(sum == 0){
-      bw.write("-1");
-    }
-    else{
-      bw.write(Integer.toString(sum)+"\n"+Integer.toString(min));
-    }
-    
+
+    if(sum==0) sb.append(-1);
+    else sb.append(sum).append("\n").append(min);
+
+
+
+    bw.write(sb.toString());
     bw.flush();
+  
   }
 }
-
