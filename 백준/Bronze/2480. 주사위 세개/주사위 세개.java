@@ -1,32 +1,45 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        // Reading input values
-        int a = Integer.parseInt(st.nextToken());
-        int b = Integer.parseInt(st.nextToken());
-        int c = Integer.parseInt(st.nextToken());
-        int money = 0;
-        
-        if (a == b && b == c) {
-            // All three numbers are the same
-            money = 10000 + a * 1000;
-        } else if (a == b || b == c || a == c) {
-            // Two numbers are the same
-            int same = (a == b) ? a : (b == c) ? b : a;
-            money = 1000 + same * 100;
-        } else {
-            // All three numbers are different
-            int max = Math.max(a, Math.max(b, c));
-            money = max * 100;
-        }
-        
-        System.out.print(money);
+    int[] arr = new int[7];
+    
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    for(int i =0;i<3;i++){
+      arr[Integer.parseInt(st.nextToken())]++;
     }
+    
+
+    int max = 0;
+    
+    for(int i = 1; i <=6;i++){
+      if(arr[i]==3){
+        int sum = 10000 + i *1000;
+        sb.append(sum);
+      }
+      else if(arr[i]==2){
+        int sum = 1000+i*100;
+        sb.append(sum);
+      }
+    }
+
+    for(int i = 1;i<=6;i++){
+      if(arr[i]==1 && max<i){
+        max = i;
+      }
+    }
+
+    if (sb.length() == 0) {
+      sb.append(max*100);
+    }  
+
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
