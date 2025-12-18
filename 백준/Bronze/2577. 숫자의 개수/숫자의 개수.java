@@ -1,22 +1,27 @@
 import java.util.*;
-
+import java.io.*;
+  
 public class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-	    int a =	sc.nextInt();
-        int b =	sc.nextInt();
-        int c =	sc.nextInt();
-        int sum = a*b*c;
-        int[] num = new int[10];
-        while(sum>0){
-            int result = sum % 10;
-            num[result]++;
-            sum/=10;
-        }
-        
-        for(int i=0;i<num.length;i++){
-          System.out.println(num[i]);   
-        }
-        sc.close();
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    int[] arr = new int[10];
+    int a = Integer.parseInt(br.readLine());
+    int b = Integer.parseInt(br.readLine());
+    int c = Integer.parseInt(br.readLine());
+    
+    String answer = Integer.toString(a*b*c);
+    for(int i =0;i<answer.length();i++){
+      arr[answer.charAt(i)-'0']++;  
     }
+    
+    for(int i : arr){
+      sb.append(i).append("\n");
+    }
+
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
