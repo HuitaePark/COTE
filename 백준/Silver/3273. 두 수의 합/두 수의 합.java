@@ -1,41 +1,29 @@
 import java.util.*;
 import java.io.*;
-
+  
 public class Main{
   public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    int count = 0;
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
     int n = Integer.parseInt(br.readLine());
-    int[] arr = new int[n];
     StringTokenizer st = new StringTokenizer(br.readLine());
-    for(int i = 0; i<n;i++){
+    int[] arr = new int[n];
+    for(int i = 0;i<n;i++){
       arr[i] = Integer.parseInt(st.nextToken());
     }
-    int begin =0;
-    int end =n-1;
     int x = Integer.parseInt(br.readLine());
-    
-    Arrays.sort(arr);
-    
-    while(begin<end){
-      int sum = arr[begin]+arr[end];
 
-      if(arr[begin]+arr[end] == x){
-        count++;
-        begin++;
-        end--;
-      }
-      else if(sum < x){
-        begin++;
-      }
-      else{
-        end--;
-      }
-        
+    boolean[] answer = new boolean[2000001];
+    int count = 0;
+    for(int i = 0;i<n;i++){
+      if(arr[i]<x && answer[x-arr[i]]) count++;
+      answer[arr[i]] = true;
     }
     
-    bw.write(Integer.toString(count));  
+    sb.append(count);
+    bw.write(sb.toString());
     bw.flush();
+  
   }
 }
