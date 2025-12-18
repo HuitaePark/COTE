@@ -1,25 +1,32 @@
 import java.util.*;
 import java.io.*;
-
+  
 public class Main{
-    public static void main(String args[]) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[10];
-        int max = 0;
-        while(n>0){
-            int num = n%10;
-            arr[num]++;
-            n /= 10;
-        }
-        arr[6] = (arr[6] + arr[9] + 1) / 2;
-        arr[9] = 0;
-        for (int j : arr) {
-            if (j > max)
-                max = j;
-        }
-        bw.write(Integer.toString(max));
-        bw.flush();
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    int[] arr = new int[10];
+    String s = br.readLine();
+
+    for(int i = 0;i<s.length();i++){
+      if(s.charAt(i)=='6' && arr['9'-'0']<arr['6'-'0']){
+        arr['9'-'0']++;
+      }
+      else if(s.charAt(i)=='9' && arr['6'-'0']<arr['9'-'0']){
+        arr['6'-'0']++;
+      }
+      else{
+        arr[s.charAt(i)-'0']++;
+      }
     }
+    int max = 0;
+    for(int i : arr){
+      if(max<i) max = i;
+    }
+    sb.append(max);
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
