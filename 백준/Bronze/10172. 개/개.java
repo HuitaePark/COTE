@@ -1,11 +1,19 @@
-public class Main {
-	public static void main(String[] args) {
+import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    sb.append("|\\_/|").append("\n");
+    sb.append("|q p|   /}").append("\n");
+    sb.append("( 0 )\"\"\"\\").append("\n");
+    sb.append("|\"^\"`    |").append("\n");
+    sb.append("||_/=\\\\__|").append("\n");
     
-		System.out.println("|\\_/|");
-		System.out.println("|q p|   /}");
-		System.out.println("( 0 )\"\"\"\\");
-		System.out.println("|\"^\"`    |");
-        System.out.println("||_/=\\\\__|");
- 
-	}
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
