@@ -1,10 +1,16 @@
-import java.util.Scanner;
-public class Main {
-    public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
-        String id = s.next();
-        System.out.println(id+"??!");
- 
-       
-    }
+import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+
+    sb.append(br.readLine()).append("??!");
+
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
