@@ -1,19 +1,21 @@
 import java.util.*;
-
+import java.io.*;
+  
 public class Main{
-    public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-		int a = sc.nextInt();
-        int b = sc.nextInt();
-        
-        int digit1 = b%10;
-        int digit2 = (b%100-digit1)/10;
-        int digit3 = b/100;
-        
-       
-        System.out.println(a*digit1);
-        System.out.println(a*digit2);
-        System.out.println(a*digit3);
-        System.out.println(a*b);
-    }
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    String a = br.readLine();
+    String b = br.readLine();
+
+    sb.append(Integer.parseInt(a)*(b.charAt(2)-'0')).append("\n");
+    sb.append(Integer.parseInt(a)*(b.charAt(1)-'0')).append("\n");
+    sb.append(Integer.parseInt(a)*(b.charAt(0)-'0')).append("\n");
+    sb.append(Integer.parseInt(a)*Integer.parseInt(b)).append("\n");
+
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
