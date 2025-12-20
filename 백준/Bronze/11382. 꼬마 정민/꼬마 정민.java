@@ -1,18 +1,21 @@
 import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    StringTokenizer st = new StringTokenizer(br.readLine());
 
-public class Main {
+    long a = Long.parseLong(st.nextToken());
+    long b = Long.parseLong(st.nextToken());
+    long c = Long.parseLong(st.nextToken());
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    sb.append(a+b+c);
 
-        
-        long a = sc.nextLong();  // 첫 번째 숫자 입력
-        long b = sc.nextLong();  // 두 번째 숫자 입력
-        long c = sc.nextLong();  // 세 번째 숫자 입력
-        
-        // 세 정수의 합을 출력
-        System.out.println(a + b + c);
-        
-        sc.close();
-    }
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
