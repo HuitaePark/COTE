@@ -1,58 +1,50 @@
 import java.util.*;
 import java.io.*;
-
+  
 public class Main{
   public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
     String str = br.readLine();
-    int n = Integer.parseInt(br.readLine());
-    
     List<Character> list = new LinkedList<>();
-    for(int i = 0; i < str.length(); i++) {
-			list.add(str.charAt(i));
-		}
+    for(char ch : str.toCharArray()){
+      list.add(ch);
+    }
+    int n = Integer.parseInt(br.readLine());
+    ListIterator<Character> it = list.listIterator(list.size());
     
-    //iterator 메소드 호출 
-	ListIterator<Character> iter = list.listIterator();
-    //처음 커서는 문장의 맨 뒤에 있어야하기 때문에 커서를 맨뒤로 이동시켜줌 
-	while(iter.hasNext()) {
-			iter.next();
-		}
-    
-    for(int i = 0;i<n;i++){
+    for(int i  = 0;i<n;i++){
       String s = br.readLine();
-      char cc = s.charAt(0);
-
-      switch(cc){
-        case 'L':
-          if(iter.hasPrevious())
-            iter.previous();
+      String[] arr = s.split(" ");
+      switch(arr[0]){
+        case "L":
+          if(it.hasPrevious()) it.previous();
           break;
-        case 'D':
-          if(iter.hasNext())
-            iter.next();
+        case "D":
+          if (it.hasNext()) it.next();
           break;
-        case 'B':
-          if(iter.hasPrevious()){
-            iter.previous();
-            iter.remove();
+        case "B":
+          if(it.hasPrevious()) {
+            it.previous();
+            it.remove();
           }
           break;
-            
-        case 'P':
-          char t = s.charAt(2);
-          iter.add(t);
-          break;
-        
-        default:
+        case "P":
+          it.add(arr[1].charAt(0));
           break;
       }
     }
-    for(char c : list)
-      bw.write(c);
-      
-    bw.flush();
-  }
     
+    for(Character ch : list){
+      sb.append(ch);
+    }
+    
+    bw.write(sb.toString());
+    bw.flush();
+  
+  }
 }
+
+
+  
