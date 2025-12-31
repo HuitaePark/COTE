@@ -6,44 +6,28 @@ public class Main{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
-    
-    int n = Integer.parseInt(br.readLine());
+    int n  =Integer.parseInt(br.readLine());
     Stack<Integer> stack = new Stack<>();
-    int[] arr = new int[n + 1];
-    
-    for (int i = 1; i <= n; i++) {
-      arr[i] = Integer.parseInt(br.readLine());
-    }
-
-    int num = 1;
-
-    for (int i = 1; i <= n; i++) {
-      int current = arr[i];
-
-      if (current >= num) {
-    
-        while (current >= num) {
-          stack.push(num++);
-          sb.append("+\n");
-        }
-
+    int count = 1;
+    for(int i = 0;i<n;i++){ 
+      int current = Integer.parseInt(br.readLine());
+      while(count <= current){
+        stack.push(count++);
+        sb.append("+").append("\n"); 
+      }
+      
+      if(stack.peek()!=current){
+        sb.setLength(0);
+        sb.append("NO");
+        break;
+      }
+      
+      while(!stack.isEmpty()&&stack.peek()==current){
         stack.pop();
-        sb.append("-\n");
-      } 
-      else {
-        int m = stack.pop();
-
-        if (m != current) {
-          bw.write("NO\n");
-          bw.flush();
-          return;
-          
-        } else {
-          sb.append("-\n");
-        }
+        sb.append("-").append("\n");
       }
     }
-
+    
     bw.write(sb.toString());
     bw.flush();
   }
