@@ -8,24 +8,29 @@ public class Main{
     StringBuilder sb = new StringBuilder();
     int n = Integer.parseInt(br.readLine());
     Deque<Integer> q = new ArrayDeque<>();
+    
     for(int i = 0;i<n;i++){
-      String st = br.readLine();
-      String[] str = st.split(" ");
-      switch(str[0]){
+      String s = br.readLine();
+      String[] arr = s.split(" ");
+
+      switch(arr[0]){
         case "push":
-          q.addLast(Integer.parseInt(str[1]));
+          q.add(Integer.parseInt(arr[1]));
           break;
+
         case "pop":
           if(q.isEmpty()){
             sb.append(-1).append("\n");
           }
           else{
-            sb.append(q.pollFirst()).append("\n");
+            sb.append(q.poll()).append("\n");
           }
           break;
+
         case "size":
           sb.append(q.size()).append("\n");
           break;
+
         case "empty":
           if(q.isEmpty()){
             sb.append(1).append("\n");
@@ -34,14 +39,16 @@ public class Main{
             sb.append(0).append("\n");
           }
           break;
+
         case "front":
           if(q.isEmpty()){
             sb.append(-1).append("\n");
           }
           else{
-            sb.append(q.peekFirst()).append("\n");
+            sb.append(q.peek()).append("\n");
           }
           break;
+
         case "back":
           if(q.isEmpty()){
             sb.append(-1).append("\n");
@@ -50,14 +57,11 @@ public class Main{
             sb.append(q.peekLast()).append("\n");
           }
           break;
-            }
+      }
     }
-
-
-
-
-     bw.write(sb.toString());
-     bw.flush();
+    
+    bw.write(sb.toString());
+    bw.flush();
   
   }
 }
