@@ -8,32 +8,31 @@ public class Main{
     StringBuilder sb = new StringBuilder();
     int n = Integer.parseInt(br.readLine());
     
-   a:for(int i = 0;i<n;i++){
-      String str = br.readLine();
-      Deque<Character> stack = new ArrayDeque<>();
+    for(int i = 0;i<n;i++){
+      String input = br.readLine();
+      Stack<Character> stack  =new Stack<>();
+      boolean isYes = true;
       
-      for(int j = 0;j<str.length();j++){
-        if(str.charAt(j)=='(') {
-          stack.push(str.charAt(j));
+      for(int j = 0;j<input.length();j++){
+        if(input.charAt(j) == '(') stack.push(input.charAt(j));
+        else if(stack.isEmpty()&&input.charAt(j) == ')'){
+          isYes = false;
+          break;
         }
-        else if(stack.isEmpty()&&str.charAt(j)==')'){
-          sb.append("NO").append("\n");
-          continue a;
+        else if(!stack.isEmpty()&&input.charAt(j) == ')') stack.pop();
+        else if(stack.peek()==')'&&input.charAt(j) == ')') {
+          isYes = false;
+          break;
         }
-        else{
-          stack.pop();
-        }
-        
-      }
-      if(stack.isEmpty()) sb.append("YES").append("\n");
-        else sb.append("NO").append("\n");
+      } 
+
+
+      if(isYes&&stack.isEmpty()) sb.append("YES").append("\n");
+      else sb.append("NO").append("\n");
     }
-    
 
-
-
-     bw.write(sb.toString());
-     bw.flush();
+    bw.write(sb.toString());
+    bw.flush();
     }
   }
 
