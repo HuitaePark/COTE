@@ -47,7 +47,9 @@ public class Main {
         }
       }
       
-      if(isYes && stack.isEmpty()) sb.append("yes").append("\n");
+      if(!stack.isEmpty()) isYes = false;
+      
+      if(isYes) sb.append("yes").append("\n");
       else sb.append("no").append("\n");
     }
     
