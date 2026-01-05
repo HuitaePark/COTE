@@ -7,39 +7,50 @@ public class Main {
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     StringBuilder sb = new StringBuilder();
 
-    while (true) {
-      String st = br.readLine();
-      if (st.equals(".")) break;
-
+    while(true){
       Stack<Character> stack = new Stack<>();
-      boolean balanced = true;
+      String input = br.readLine();
+      boolean isYes = true;
+      if(input.equals(".")) break;
+      
+      for(int i = 0;i<input.length();i++){
+        if(input.charAt(i)=='['||input.charAt(i)=='{'||input.charAt(i)=='(') stack.push(input.charAt(i));
+        
+        if(input.charAt(i)==']' && !stack.isEmpty() && stack.peek() == '[') stack.pop();
+        else if(input.charAt(i)==']' && !stack.isEmpty() && stack.peek() != '['){ 
+          isYes = false;
+          break;
+        }
+        else if(stack.isEmpty() && input.charAt(i)==']'){
+          isYes = false;
+          break;
+        } 
 
-      for (int i = 0; i < st.length(); i++) {
-        char ch = st.charAt(i);
-        if (ch == '(' || ch == '[') {
-          stack.push(ch);
-        } else if (ch == ')') {
-          if (stack.isEmpty() || stack.peek() != '(') {
-            balanced = false;
-            break;
-          }
-          stack.pop();
-        } else if (ch == ']') {
-          if (stack.isEmpty() || stack.peek() != '[') {
-            balanced = false;
-            break;
-          }
-          stack.pop();
+        if(input.charAt(i)=='}' && !stack.isEmpty() && stack.peek() == '{') stack.pop();
+        else if(input.charAt(i)=='}' && !stack.isEmpty() && stack.peek() != '{'){
+          isYes = false;
+          break;
+        }
+        else if(stack.isEmpty() && input.charAt(i)=='}'){
+          isYes = false;
+          break;
+        }
+
+        if(input.charAt(i)==')' && !stack.isEmpty() && stack.peek() == '(') stack.pop();
+        else if(input.charAt(i)==')' && !stack.isEmpty() && stack.peek() != '('){
+          isYes = false;
+          break;
+        }
+        else if(stack.isEmpty() && input.charAt(i)==')'){
+          isYes = false;
+          break;
         }
       }
-
-      if (balanced && stack.isEmpty()) {
-        sb.append("yes\n");
-      } else {
-        sb.append("no\n");
-      }
+      
+      if(isYes && stack.isEmpty()) sb.append("yes").append("\n");
+      else sb.append("no").append("\n");
     }
-
+    
     bw.write(sb.toString());
     bw.flush();
   }
