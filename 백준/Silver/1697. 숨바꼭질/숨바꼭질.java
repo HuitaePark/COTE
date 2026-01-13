@@ -1,54 +1,38 @@
 import java.util.*;
 import java.io.*;
-
-public class Main {
-  public static void main(String args[]) throws IOException {
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
-
     StringTokenizer st = new StringTokenizer(br.readLine());
     int n = Integer.parseInt(st.nextToken());
-    int k = Integer.parseInt(st.nextToken());
-    
-    // 예외 케이스: 시작 == 목표
-    if (n == k) {
-      bw.write("0\n");
-      bw.flush();
-      return;
-    }
+    int m = Integer.parseInt(st.nextToken());
+    int[] arr = new int[100001];
+    Arrays.fill(arr, -1);
 
-    Queue<Integer> q = new LinkedList<>();
-    Set<Integer> visited = new HashSet<>();
+    Queue<Integer> q = new ArrayDeque<>();
 
-    q.add(n);
-    visited.add(n);
-    int second = 0;
-    
-    while (!q.isEmpty()) {
-      int size = q.size();
-      second++;
-      
-      for (int i = 0; i < size; i++) {
-        int current = q.poll();
+    q.offer(n);
+    arr[n] = 0;
 
-        // 목표 도달
-        if (current == k) {
-          sb.append(second - 1);
-          bw.write(sb.toString());
-          bw.flush();
-          return;
-        }
-
-        // 다음 이동들
-        int[] next = {current + 1, current - 1, current * 2};
-        for (int nextPos : next) {
-          if (nextPos >= 0 && nextPos <= 100000 && !visited.contains(nextPos)) {
-            q.add(nextPos);
-            visited.add(nextPos);
-          }
-        }
+    while(!q.isEmpty()){
+      int current = q.poll();
+      if(m==current){
+        sb.append(arr[current]);
+        break;
+      }
+      int[] curArr = {current-1,current+1,current*2};
+      for(int i : curArr){
+        if(i<0 || i>100000) continue;
+        if (arr[i] != -1) continue;
+        arr[i] = arr[current] + 1;
+        q.add(i);
       }
     }
+
+    bw.write(sb.toString());
+    bw.flush();
   }
 }
