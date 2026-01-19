@@ -29,14 +29,11 @@ public class Main{
 
       while(!q.isEmpty()){//bfs진행
         int current = q.poll();
+        count++;
         visited[arr[current]]--;
         if(visited[arr[current]]==0) q.offer(arr[current]);
       }
 
-      for(int j =1;j<=n;j++){ 
-        if(visited[j]==0) count++;
-      }
-      
       sb.append(count).append("\n");
     }
 
