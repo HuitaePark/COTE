@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 47612 KB, 시간: 476 ms
+메모리: 46864 KB, 시간: 480 ms
 
 ### 분류
 
@@ -12,7 +12,7 @@
 
 ### 제출 일자
 
-2025년 7월 5일 23:13:32
+2026년 1월 25일 02:44:46
 
 ### 문제 설명
 
@@ -27,7 +27,7 @@
 
 <p>아래 그림은 원판이 5개인 경우의 예시이다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/11729/hanoi.png" style="height:200px; width:1050px"></p>
+<p style="text-align: center;"><img alt="" src="" style="height:200px; width:1050px"></p>
 
 ### 입력 
 
