@@ -4,8 +4,8 @@ import java.io.*;
 public class Main{
 
   static int N, M;
-  static int[] arr;
-  static boolean[] visited;
+  static int[] arr = new int[20];
+  static boolean[] visited = new boolean[20];
   static StringBuilder sb = new StringBuilder();
   
   public static void main(String args[]) throws IOException{
@@ -14,32 +14,26 @@ public class Main{
     StringTokenizer st = new StringTokenizer(br.readLine());
     N = Integer.parseInt(st.nextToken());
     M = Integer.parseInt(st.nextToken());
-
-    arr= new int[M];
-    visited = new boolean[N+1];
-    dfs(0);
     
-    
+    func(0);
     bw.write(sb.toString());
     bw.flush();
   
   }
-  static void dfs(int depth){
-    if(depth==M){
-       for(int i = 0;i<M;i++){
-         sb.append(arr[i]).append(" ");
-       } 
+  static void func(int k){
+    if(k==M){
+      for(int i =0;i<M;i++){
+        sb.append(arr[i]).append(" ");
+      }
       sb.append("\n");
       return;
     }
-    
-    for(int i = 1;i<=N;i++){
+
+    for(int i =1;i<=N;i++){
       if(!visited[i]){
+        arr[k] = i;
         visited[i] = true;
-        arr[depth] = i;
-
-        dfs(depth+1);
-
+        func(k+1);
         visited[i] = false;
       }
     }
