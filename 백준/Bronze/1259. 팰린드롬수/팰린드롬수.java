@@ -1,28 +1,31 @@
 import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    while(true){
+      String s = br.readLine();
+      if(s.equals("0")) break;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        while (true) {
-            String s = sc.nextLine();
-            
-            if (s.equals("0")) {
-                break;  // 입력이 "0"이면 종료
-            }
-
-            // 문자열을 뒤집음
-            StringBuilder sb = new StringBuilder(s);
-            String reversed = sb.reverse().toString();
-
-            // 원래 문자열과 뒤집은 문자열을 비교
-            if (s.equals(reversed)) {
-                System.out.println("yes");
-            } else {
-                System.out.println("no");
-            }
+      boolean isMatched = true;
+      int j = s.length()-1;
+      int i = 0;
+      while(i<=j){
+        if(s.charAt(i) != s.charAt(j)){
+          isMatched = false;
+          break;
         }
-        
-        sc.close();
+        j--;
+        i++;
+      }
+      if(isMatched) sb.append("yes").append("\n");
+      else sb.append("no").append("\n");
     }
+
+    bw.write(sb.toString());
+    bw.flush();
+  }
 }
