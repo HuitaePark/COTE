@@ -1,39 +1,36 @@
-import java.io.*;
 import java.util.*;
-
-
-
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int n = Integer.parseInt(st.nextToken());
-        int[] abc = new int[26];
-        char[] arr = new char[101];
-        int count = 0;
-        for (int i = 0; i < n; i++) {
-            String str = br.readLine();
-            boolean[] used = new boolean[26];
-            boolean isGroupWord = true;
-
-            for (int j = 0; j < str.length(); j++) {
-                char current = str.charAt(j);
-                if (j>0 && current != str.charAt(j-1)) {
-                    if(used[current-'a']){
-                        isGroupWord = false;
-                        break;
-                    }
-                }
-                if (j == 0 ||current != str.charAt(j-1)) {
-                    used[current-'a'] = true;
-                }
-
-            }
-            if(isGroupWord) count++;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    int count = 0;
+    for(int i=0;i<n;i++){
+      String s = br.readLine();
+      Set<Character> set = new HashSet<>();
+      int idx = s.length()-1;
+      boolean isGroup = true;
+      while(idx>=0){
+        char current = s.charAt(idx);
+        if(!set.contains(current)) set.add(current);
+        else if(s.charAt(idx+1)==current){
+          idx--;
+          continue;
         }
-
-
-        System.out.println(count);
+        else{
+          isGroup = false;
+          break;
+        }
+        idx--;
+      }
+      if(isGroup) count++;
     }
+    
+    sb.append(count);
+    bw.write(sb.toString());
+    bw.flush();
+  }
 }
