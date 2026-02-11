@@ -1,6 +1,6 @@
 # [level 1] 최댓값 구하기 - 59415 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59415) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59415?language=mysql) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2025년 08월 19일 15:46:31
+2026년 02월 12일 01:56:00
 
 ### 문제 설명
 
