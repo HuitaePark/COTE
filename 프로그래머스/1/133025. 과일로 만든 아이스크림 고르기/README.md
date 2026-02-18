@@ -1,6 +1,6 @@
 # [level 1] 과일로 만든 아이스크림 고르기 - 133025 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/133025) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/133025?language=mysql) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2025년 08월 19일 15:20:45
+2026년 02월 18일 23:06:18
 
 ### 문제 설명
 
