@@ -10,32 +10,28 @@ public class Main{
     int n = Integer.parseInt(st.nextToken());
     int m = Integer.parseInt(st.nextToken());
     Map<String,Integer> map = new HashMap<>();
-    for(int i =0;i<n;i++){
-      String str = br.readLine();
-      if(str.length()>=m){
-        map.put(str,map.getOrDefault(str,0)+1);
+    for(int i=0;i<n;i++){
+      String s = br.readLine();
+      if(s.length()>=m){
+        map.put(s,map.getOrDefault(s,0)+1);
       }
     }
-    List<Map.Entry<String, Integer>> entryList = new ArrayList<>(map.entrySet());
-    Collections.sort(entryList,(o1,o2)->{
-      if(o1.getValue()==o2.getValue() && o1.getKey().length()==o2.getKey().length()){
-        return o1.getKey().compareTo(o2.getKey());
-      }
-      else if(o1.getValue()==o2.getValue()){
-        return o2.getKey().length() - o1.getKey().length();
-      }
-      else{
-        return o2.getValue() - o1.getValue();
-      }
-    });
-
-    for(int i = 0;i<entryList.size();i++){
-      sb.append(entryList.get(i).getKey()).append("\n");
+    List<String> list = new ArrayList<>();
+    for(Map.Entry<String,Integer> entry : map.entrySet()){
+      list.add(entry.getKey());
     }
-  
-
-     bw.write(sb.toString());
-     bw.flush();
+    Collections.sort(list, (a, b) -> {
+    int fa = map.get(a), fb = map.get(b);
+    if (fa != fb) return fb - fa;              
+    if (a.length() != b.length()) return b.length() - a.length(); 
+    return a.compareTo(b);                       
+});
+    for(String s: list){
+      sb.append(s).append("\n");
+    }
+    
+    bw.write(sb.toString());
+    bw.flush();
   
   }
 }
