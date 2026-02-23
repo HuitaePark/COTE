@@ -1,6 +1,5 @@
 class Solution {
     public String solution(String[] id_pw, String[][] db) {
-        String answer = "";
         boolean id = false;
         boolean pw = false;
         for(int i=0;i<db.length;i++){
