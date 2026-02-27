@@ -1,6 +1,6 @@
 # [level 1] 특정 옵션이 포함된 자동차 리스트 구하기 - 157343 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/157343) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/157343?language=mysql) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2025년 08월 19일 15:40:08
+2026년 02월 28일 01:53:41
 
 ### 문제 설명
 
