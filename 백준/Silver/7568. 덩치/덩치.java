@@ -1,31 +1,29 @@
+import java.util.*;
 import java.io.*;
+  
 public class Main{
-    public static void main(String[] args) throws IOException{
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int N = Integer.parseInt(br.readLine());
-
-        int[][] arr = new int[N][2];
-
-        String[] sp;
-        for(int i = 0; i < N; i++) {
-            sp = br.readLine().split(" ");			// 문자열 분리
-            arr[i][0] = Integer.parseInt(sp[0]);	// [i][0] : 몸무게 
-            arr[i][1] = Integer.parseInt(sp[1]);	// [i][1] : 키 
-        }
-
-        for(int i=0;i<N;i++){
-            int rank = 1;
-
-            for(int j = 0; j < N; j++) {
-                if(i == j) continue;
-                if (arr[i][0] < arr[j][0] && arr[i][1] < arr[j][1]) {
-                    rank++;
-                }
-            }
-            bw.write(rank+" ");
-        }
-        bw.flush();
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    int n = Integer.parseInt(br.readLine());
+    int[][] arr = new int[n][2];
+    for(int i=0;i<n;i++){
+      StringTokenizer st = new StringTokenizer(br.readLine());
+      arr[i][0] = Integer.parseInt(st.nextToken());
+      arr[i][1] = Integer.parseInt(st.nextToken()); 
     }
+    for(int i=0;i<n;i++){
+      int[] spec = arr[i];
+      int count = 0;
+      for(int j=0;j<n;j++){
+        if(i==j) continue;
+        if(arr[j][0]>spec[0] && arr[j][1]>spec[1]) count++;
+      }
+      sb.append(count+1).append(" ");
+    }
+
+    bw.write(sb.toString());
+    bw.flush();
+  }
 }
