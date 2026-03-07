@@ -1,40 +1,36 @@
+import java.util.*;
 import java.io.*;
-
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String str = br.readLine();
-        int count = 0;
-        
-        for (int i = 0; i < str.length(); i++) {
-            if (i + 1 < str.length()) {
-                // dz= 특수 문자 조합 체크
-                if (i + 2 < str.length() &&
-                        str.startsWith("dz=", i)) {
-                    i += 2;
-                    count++;
-                    continue;
-                }
-                
-                // 다른 특수 문자 조합들 체크
-                String[] specials = {"c=", "c-", "d-", "lj", "nj", "s=", "z="};
-                boolean isSpecial = false;
-                
-                for (String special : specials) {
-                    if (str.startsWith(special, i)) {
-                        i += 1;
-                        count++;
-                        isSpecial = true;
-                        break;
-                    }
-                }
-                
-                if (isSpecial) {
-                    continue;
-                }
-            }
-            count++;
-        }
-        System.out.println(count);
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    int count = 0;
+    String s= br.readLine();
+    for(int i=0;i<s.length();i++){
+      if(i+2 < s.length() && s.substring(i,i+3).equals("dz=")){
+        count++;
+        i += 2;
+      }
+      else if(i+1<s.length()){
+        String current = s.substring(i,i+2);
+        if(current.equals("c=")||
+          current.equals("c-")||
+          current.equals("d-")||
+          current.equals("lj")||
+          current.equals("nj")||
+          current.equals("s=")||
+          current.equals("z=")){
+          count++;
+          i++;
+          }
+          else count++;
+      }
+      else count++;
     }
+    sb.append(count);
+    bw.write(sb.toString());
+    bw.flush();
+  }
 }
