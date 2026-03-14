@@ -1,6 +1,6 @@
 # [level 2] 루시와 엘라 찾기 - 59046 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59046?language=mysql) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/59046) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2026년 02월 28일 02:00:26
+2026년 03월 15일 00:44:30
 
 ### 문제 설명
 
