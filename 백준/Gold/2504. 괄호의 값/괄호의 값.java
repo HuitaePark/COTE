@@ -6,60 +6,54 @@ public class Main{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
-    String input = br.readLine();
     Stack<Character> stack = new Stack<>();
-    int tmp = 1;
-    int result = 0;
-    
-    a:for(int i = 0;i<input.length();i++){
-      char current = input.charAt(i);
-      
-      switch(current){
-        case '[':
+    String s = br.readLine();
+
+    int sum = 0;
+    int combo = 1;
+    for(int i=0;i<s.length();i++){
+      char current = s.charAt(i);
+        if(!stack.isEmpty() && stack.peek()=='[' && current==')'){
+          System.out.println(0);
+          return;
+        }
+        else if(!stack.isEmpty() && stack.peek()=='(' && current==']'){
+          System.out.println(0);
+          return;
+        }
+        else if(stack.isEmpty() && current==')'){
+          System.out.println(0);
+          return;
+        }
+        else if(stack.isEmpty() && current==']'){
+          System.out.println(0);
+          return;
+        }
+        else if(current=='('){
+          combo*=2;
           stack.push(current);
-          tmp*=3;
-          break;
-        
-        case '(':
+        }
+        else if(current=='['){
+          combo*=3;
           stack.push(current);
-          tmp*=2;
-          break;
-        
-        case ')':
-          if(stack.isEmpty() || stack.peek()!='('){
-            result = 0;
-            break a;
-          }
-
-          if(input.charAt(i-1)=='('){
-            result+=tmp;
-          }
-
+        }
+        else if(current==')'){
+          if(s.charAt(i-1)=='(') sum+=combo;
+          combo/=2;
           stack.pop();
-          tmp/=2;
-          break;
-          
-        case ']':
-          if(stack.isEmpty() || stack.peek()!='['){
-            result = 0;
-            break a;
-          }
-
-          if(input.charAt(i-1)=='['){
-            result+=tmp;
-          }
-
+        }
+        else if(current==']'){
+          if(s.charAt(i-1)=='[') sum+=combo;
+          combo/=3;
           stack.pop();
-          tmp/=3;
-          break;
-      }
+        }
     }
-
-    if(!stack.isEmpty()) sb.append(0);
-    else sb.append(result);
-    
+    if(!stack.isEmpty()){
+      System.out.println(0);
+      return;
+    }
+    sb.append(sum);
     bw.write(sb.toString());
     bw.flush();
-  
   }
 }
