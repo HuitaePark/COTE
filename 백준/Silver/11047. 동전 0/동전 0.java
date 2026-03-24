@@ -7,34 +7,24 @@ public class Main{
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
     StringTokenizer st = new StringTokenizer(br.readLine());  
-    
     int n = Integer.parseInt(st.nextToken());
-    int price = Integer.parseInt(st.nextToken());
-    
-    Integer[] arr= new Integer[n];
-    for(int i = 0;i<n;i++){
-      arr[i]= Integer.parseInt(br.readLine());
+    int money = Integer.parseInt(st.nextToken());
+    int[] arr = new int[n];
+    for(int i=0;i<n;i++){
+      arr[i] = Integer.parseInt(br.readLine());
     }
 
-
-    Arrays.sort(arr,Collections.reverseOrder());
-    
     int count = 0;
-    for(Integer i : arr){
-      if(i>price) continue;
-      else{
-        count+= price/i;
-        price%=i;
+    for(int i=arr.length-1;i>=0;i--){
+      if(arr[i]>money) continue;
+      else if(arr[i]<=money){
+        count += money/arr[i];
+        money = money%arr[i];
       }
-    }
-
+      if(money==0) break;
+     }
     sb.append(count);
-
-
-
-
-     bw.write(sb.toString());
-     bw.flush();
-  
+    bw.write(sb.toString());
+    bw.flush();
   }
 }
