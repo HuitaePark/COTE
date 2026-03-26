@@ -8,47 +8,43 @@ public class Main{
     StringBuilder sb = new StringBuilder();
     int n = Integer.parseInt(br.readLine());
     long[] arr = new long[n];
-    int count = 0;
-    
-    
-    StringTokenizer st = new StringTokenizer(br.readLine());
-    for(int i = 0;i<n;i++){
-      arr[i] = Long.parseLong(st.nextToken());
-    }
-    Arrays.sort(arr);
 
-    for(int k = 0;k<n;k++){
-      int i = 0;
-      int j = n-1;
-      long find = arr[k];
-      while(i<j){
-        if(arr[i]+arr[j]==find){
-          if(i!=k && j!=k){
+    StringTokenizer st = new StringTokenizer(br.readLine());
+    for(int i=0;i<n;i++){
+      long current = Long.parseLong(st.nextToken());
+      arr[i] = current;
+    }
+
+    Arrays.sort(arr);
+    int count = 0;
+    for(int i=0;i<n;i++){
+      long current = arr[i];
+      int start = 0;
+      int end = n-1;
+      while(start<end){
+        if(start==i){
+          start++;
+          continue;
+        }
+        else if(end==i){
+          end--;
+          continue;
+        }
+        else{
+          if(arr[start]+arr[end] == current){
             count++;
             break;
           }
-          else if(i==k){
-            i++;
-          }
-          else if(j==k){
-            j--;
-          }
+          else if(arr[start]+arr[end]>current) end--;
+          else start++;
         }
-        else if(arr[i]+arr[j]<find){
-           i++;
-        }
-        else{
-           j--;
-        }
-      }
+      }  
     }
     
-    
-
-
     sb.append(count);
     bw.write(sb.toString());
     bw.flush();
-  
+    bw.close();
+    br.close();
   }
 }
