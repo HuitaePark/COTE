@@ -13,7 +13,7 @@ public class Main{
     Bag[] arr = new Bag[n+1];
     int[][] dp = new int[n+1][k+1];
     
-    for(int i=0;i<n;i++){
+    for(int i=1;i<=n;i++){
       st = new StringTokenizer(br.readLine());
       int weight = Integer.parseInt(st.nextToken());
       int value = Integer.parseInt(st.nextToken());
@@ -21,7 +21,7 @@ public class Main{
     }    
 
     for(int i=1;i<=n;i++){
-      Bag current = arr[i-1];
+      Bag current = arr[i];
       for(int j=1;j<=k;j++){
         if(j<current.weight){
           dp[i][j] = dp[i - 1][j];
