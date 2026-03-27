@@ -6,7 +6,6 @@ public class Main{
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
-    
     while(true){
       int n = Integer.parseInt(br.readLine());
       int cnt = 0;
@@ -20,14 +19,8 @@ public class Main{
       }
       sb.append(cnt).append("\n");
     }
-  
-
-
-
-
      bw.write(sb.toString());
      bw.flush();
-  
   }
   private static boolean isPrime(int num){
     if(num<=1) return false;
