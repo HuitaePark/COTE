@@ -7,24 +7,28 @@ public class Main{
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
     int n = Integer.parseInt(br.readLine());
-    int[] arr= new int[n];
+    if(n==0){
+      System.out.println(0);
+      return;
+    }
+    
+    int[] arr = new int[n];
     for(int i=0;i<n;i++){
       arr[i] = Integer.parseInt(br.readLine());
     }
-    Arrays.sort(arr);
-    int avg = (int)Math.round(n*0.15);
+    
+    int cut= (int)Math.round(15.0/100*n);
     int sum = 0;
     int count = 0;
-    for(int i =avg;i<n-avg;i++){
-      sum+=arr[i];
+    
+    Arrays.sort(arr);
+    for(int i=cut;i<arr.length-cut;i++){
       count++;
+      sum+=arr[i];
     }
-     
-    double answer =(double)sum/count;
-    sb.append(Math.round(answer));
-
-     bw.write(sb.toString());
-     bw.flush();
-  
+    sb.append((int)Math.round((double)sum/count));
+    
+    bw.write(sb.toString());
+    bw.flush();
   }
 }
