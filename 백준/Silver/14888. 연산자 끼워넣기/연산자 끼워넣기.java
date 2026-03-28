@@ -33,19 +33,19 @@ public class Main{
     bw.close();
   }
   public static void dfs(int index, int currentResult){
-    if (index == n) {
-            MAX = Math.max(MAX, currentResult);
-            MIN = Math.min(MIN, currentResult);
-            return;
-        }  
-    for (int i = 0; i < 4; i++) {
-            if (giho[i] > 0) {
-                giho[i]--;
-                if (i == 0) dfs(index + 1, currentResult + arr[index]);
-                else if (i == 1) dfs(index + 1, currentResult - arr[index]);
-                else if (i == 2) dfs(index + 1, currentResult * arr[index]);
-                else if (i == 3) dfs(index + 1, currentResult / arr[index]);
-                giho[i]++;
+    if(index==n){
+      MAX = Math.max(MAX,currentResult);
+      MIN = Math.min(MIN,currentResult);
+      return;
+    }
+    for(int i=0;i<4;i++){
+      if(giho[i]>0){
+        giho[i]--;
+        if(i==0) dfs(index+1,currentResult+arr[index]);
+        else if(i==1) dfs(index+1,currentResult-arr[index]);
+        else if(i==2) dfs(index+1,currentResult*arr[index]);
+        else if(i==3) dfs(index+1,currentResult/arr[index]);
+        giho[i]++;
       }
     }
   }
