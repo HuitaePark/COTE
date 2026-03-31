@@ -7,24 +7,18 @@ public class Main{
     BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
     StringBuilder sb = new StringBuilder();
     int n = Integer.parseInt(br.readLine());
-    long[] dp = new long[101];
-    dp[1] = 1;
-    dp[2] = 1;
-    dp[3] = 1;
-    
-    for(int i = 4;i<=100;i++){
+    long[] dp =  new long[101];
+    dp[1] = 1L;
+    dp[2] = 1L;
+    dp[3] = 1L;
+    for(int i=4;i<=100;i++){
       dp[i] = dp[i-2] + dp[i-3];
     }
-
-    for(int i = 0;i<n;i++){
-      int m = Integer.parseInt(br.readLine());
-      sb.append(dp[m]).append("\n");
+    for(int i=0;i<n;i++){
+      int current = Integer.parseInt(br.readLine());
+      sb.append(dp[current]).append("\n");
     }
-
-
-
-     bw.write(sb.toString());
-     bw.flush();
-  
+    bw.write(sb.toString());
+    bw.flush();
   }
 }
