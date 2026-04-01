@@ -22,10 +22,9 @@ public class Main{
        sum+=temp;
     }
 
-     sb.append(sum);
+    sb.append(sum);
 
-     bw.write(sb.toString());
-     bw.flush();
-  
+    bw.write(sb.toString());
+    bw.flush();
   }
 }
