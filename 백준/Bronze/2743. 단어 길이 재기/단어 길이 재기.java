@@ -1,12 +1,16 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
+  
+public class Main{
+  public static void main(String args[]) throws IOException{
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out)); 
+    StringBuilder sb = new StringBuilder();
+    sb.append(br.readLine().length());
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        String answer = st.nextToken();
-        System.out.println(answer.length());
-    }
+    bw.write(sb.toString());
+    bw.flush();
+    br.close();
+    bw.close();
+  }
 }
