@@ -22,4 +22,8 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0937-reorder-data-in-log-files](https://github.com/HuitaePark/COTE/tree/master/0937-reorder-data-in-log-files) |
+## Math
+|  |
+| ------- |
+| [0009-palindrome-number](https://github.com/HuitaePark/COTE/tree/master/0009-palindrome-number) |
 <!---LeetCode Topics End-->
