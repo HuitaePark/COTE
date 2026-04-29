@@ -1,28 +1,45 @@
 import java.util.*;
+
 class Solution {
     public int solution(int n, int[] lost, int[] reserve) {
-        Arrays.sort(reserve);
+        Set<Integer> lostSet = new HashSet<>();
+        Set<Integer> reserveSet = new HashSet<>();
+
         Arrays.sort(lost);
-        Set<Integer> set = new HashSet<>();
+        Arrays.sort(reserve);
+
         for (int i : lost) {
-            set.add(i); 
+            lostSet.add(i);
         }
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int i : reserve){
-            if(set.contains(i)){
-                set.remove(i);
-            }
-            else list.add(i);
+
+        for (int i : reserve) {
+            reserveSet.add(i);
         }
-        for(int i = 0;i<list.size();i++){
-            int current = list.get(i);
-            if(set.contains(current-1)){
-                set.remove(current-1);
-            }
-            else if(set.contains(current+1)){
-                set.remove(current+1);
+        
+        //도난 당했지만 여벌있는 학생
+        for (int i : reserve) {
+            if (lostSet.contains(i)) {
+                lostSet.remove(i);
+                reserveSet.remove(i);
             }
         }
-        return n-set.size();
+
+        int answer = n - lostSet.size();
+        
+        for (int i : lost) {
+            if (!lostSet.contains(i)) {
+                continue;
+            }
+
+            if (reserveSet.contains(i - 1)) {
+                reserveSet.remove(i - 1);
+                answer++;
+            } else if (reserveSet.contains(i + 1)) {
+                reserveSet.remove(i + 1);
+                answer++;
+            }
+        }
+
+        return answer;
     }
 }
