@@ -18,6 +18,7 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 ## Array
 |  |
 | ------- |
+| [0704-binary-search](https://github.com/HuitaePark/COTE/tree/master/0704-binary-search) |
 | [0937-reorder-data-in-log-files](https://github.com/HuitaePark/COTE/tree/master/0937-reorder-data-in-log-files) |
 ## Sorting
 |  |
@@ -47,4 +48,8 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0187-repeated-dna-sequences](https://github.com/HuitaePark/COTE/tree/master/0187-repeated-dna-sequences) |
+## Binary Search
+|  |
+| ------- |
+| [0704-binary-search](https://github.com/HuitaePark/COTE/tree/master/0704-binary-search) |
 <!---LeetCode Topics End-->
