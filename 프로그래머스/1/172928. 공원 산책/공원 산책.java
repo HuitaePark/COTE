@@ -1,71 +1,47 @@
-import java.util.*;
-class Solution {    
+class Solution {
+    String[] parks;
     public int[] solution(String[] park, String[] routes) {
         int r = 0;
         int c = 0;
-        int maxR  = park.length;
-        int maxC = park[0].length();
-        boolean[][] visited = new boolean[maxR][maxC];
-        for(int i = 0;i<maxR;i++){
-            String current = park[i];
-            for(int j=0;j<maxC;j++){
-                if(current.charAt(j)=='S'){
-                    r = i;
-                    c = j;
-                }
-                else if(current.charAt(j)=='X'){
-                    visited[i][j] = true;
+        parks = park;
+        
+        for(int i=0; i<park.length; i++){
+            for(int j=0; j<park[i].length(); j++){
+                if(park[i].charAt(j) == 'S'){
+                    r = i; c = j;
+                    break;
                 }
             }
         }
-        a:for(int i=0;i<routes.length;i++){
-            StringTokenizer st = new StringTokenizer(routes[i]);
-            String dir = st.nextToken();
-            int count = Integer.parseInt(st.nextToken());
-            int nr,nc;
-            switch(dir){
-                case "E":
-                    nr = r;
-                    nc = c+count;
-                    if(nc>=maxC) continue;
-                    for(int j=c;j<=c+count;j++){
-                        if(visited[nr][j]) continue a;
-                    }
-                    r = nr;
-                    c = nc;
+        
+        for(String route : routes){
+            String[] str = route.split(" ");
+            String dir = str[0];
+            int count = Integer.parseInt(str[1]);
+            
+            int currR = r;
+            int currC = c;
+            boolean canMove = true;
+
+            for(int i=0; i<count; i++){
+                if(dir.equals("E")) currC++;
+                else if(dir.equals("W")) currC--;
+                else if(dir.equals("S")) currR++;
+                else if(dir.equals("N")) currR--;
+                
+
+                if(currR < 0 || currR >= parks.length || currC < 0 || currC >= parks[0].length() || parks[currR].charAt(currC) == 'X'){
+                    canMove = false;
                     break;
-                case "W":
-                    nr = r;
-                    nc = c-count;
-                    if(nc<0) continue;
-                    for(int j=c;j>=c-count;j--){
-                        if(visited[nr][j]) continue a;
-                    }
-                    r = nr;
-                    c = nc;
-                    break;
-                case "N":
-                    nr = r-count;
-                    nc = c;
-                    if(nr<0) continue;
-                    for(int j=r;j>=r-count;j--){
-                        if(visited[j][nc]) continue a;
-                    }
-                    r = nr;
-                    c = nc;
-                    break;
-                case "S":
-                    nr = r+count;
-                    nc = c;
-                    if(nr>=maxR) continue;
-                    for(int j=r;j<=r+count;j++){
-                        if(visited[j][nc]) continue a;
-                    }
-                    r = nr;
-                    c = nc;
-                    break;
+                }
+            }
+
+            if(canMove){
+                r = currR;
+                c = currC;
             }
         }
-        return new int[]{r,c};
+        
+        return new int[]{r, c};
     }
 }
