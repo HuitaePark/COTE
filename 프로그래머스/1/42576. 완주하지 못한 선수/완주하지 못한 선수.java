@@ -6,11 +6,11 @@ class Solution {
             map.put(s,map.getOrDefault(s,0)+1);
         }
         for(String s : completion){
-            if(map.containsKey(s)) map.put(s,map.get(s)-1);    
+            if(map.get(s)>0) map.put(s,map.get(s)-1);
         }
-        for(Map.Entry<String,Integer> entry : map.entrySet()){
-            if(map.get(entry.getKey())>0) return entry.getKey();
+        for(String s : map.keySet()){
+            if(map.get(s)>0) return s;
         }
-        return "";
+            return "";
     }
 }
