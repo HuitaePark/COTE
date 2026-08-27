@@ -1,10 +1,10 @@
 # [level 0] 문자열안에 문자열 - 120908 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120908?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/120908) 
 
 ### 성능 요약
 
-메모리: 69.3 MB, 시간: 0.06 ms
+메모리: 11.4 MB, 시간: 0.00 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 08월 14일 10:18:06
+2026년 08월 27일 16:12:21
 
 ### 문제 설명
 
