@@ -1,26 +1,10 @@
 class Solution {
     public int solution(int n) {
         int answer = 1;
-        boolean isSame = false;
-        while(true){
-            int sum = 1;
-            for(int i =1;i<=answer;i++){
-                sum*=i;
-            }
-            if(sum==n){
-                isSame = true; 
-                break;
-            }
-            else if(sum>n){
-                break;
-            }
-            answer++;
+        for(int i=0;i<10;i++){
+            answer*=(i+1);
+            if(answer>n) return i;
         }
-        if(isSame){
-            return answer;
-        }
-        else{
-            return answer-1;
-        }
+        return 10;
     }
 }
