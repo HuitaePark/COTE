@@ -1,20 +1,19 @@
-import java.math.BigInteger;
+import java.math.*;
 
 class Solution {
-    public long solution(int balls, int share) {
-        BigInteger nFact = fact(balls);
-        BigInteger kFact = fact(share);
-        BigInteger nkFact = fact(balls - share);
+    public int solution(int balls, int share) {
+        BigInteger[] arr = new BigInteger[balls + 1];
 
-        BigInteger comb = nFact.divide(kFact.multiply(nkFact));
-        return comb.longValue();
-    }
+        arr[0] = BigInteger.ONE;
 
-    private BigInteger fact(int x) {
-        BigInteger r = BigInteger.ONE;
-        for (int i = 2; i <= x; i++) {
-            r = r.multiply(BigInteger.valueOf(i));
+        for (int i = 1; i <= balls; i++) {
+            arr[i] = arr[i - 1].multiply(BigInteger.valueOf(i));
         }
-        return r;
+
+        BigInteger result = arr[balls].divide(
+            arr[balls - share].multiply(arr[share])
+        );
+
+        return result.intValue();
     }
 }
