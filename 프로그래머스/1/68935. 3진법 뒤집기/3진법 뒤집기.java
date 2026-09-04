@@ -1,17 +1,17 @@
 class Solution {
     public int solution(int n) {
         int answer = 0;
-        int tmp = n;
+        int current = n;
         StringBuilder sb = new StringBuilder();
-        while(n>0){
-            sb.append(n%3);
-            n/=3;
+        while(current>0){
+            sb.append(current%3);
+            current/=3;
         }
-        String reverse = sb.toString();
-        for(char c : reverse.toCharArray()){
-            answer = answer * 3 + (c-'0');
-        }
-        
+        int tmp = 0;
+        for(int i=sb.length()-1;i>=0;i--){
+            answer += (sb.charAt(i) - '0') * (int) Math.pow(3, tmp);
+            tmp++;
+        }        
         return answer;
     }
 }
