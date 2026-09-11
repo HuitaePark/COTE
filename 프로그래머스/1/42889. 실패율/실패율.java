@@ -1,29 +1,51 @@
 import java.util.*;
+
 class Solution {
     public int[] solution(int N, int[] stages) {
-        int[] challenger = new int[N+2];
-        double total = stages.length;
-        Map<Integer,Double> fails = new HashMap<>();
-        for(int stage : stages){
-            challenger[stage]++;
+        int[] answer = new int[N];
+
+        Map<Integer, Integer> pass = new HashMap<>();
+        Map<Integer, Integer> fail = new HashMap<>();
+
+        for (int i = 1; i <= N; i++) {
+            pass.put(i, 0);
+            fail.put(i, 0);
+            answer[i - 1] = i;
         }
-        
-        for(int i = 1;i<=N;i++){
-            if(challenger[i]==0){
-                fails.put(i,0.);
+
+        for (int current : stages) {
+            for (int j = 1; j < current && j <= N; j++) {
+                pass.put(j, pass.get(j) + 1);
             }
-            else{
-                fails.put(i,challenger[i] / total);
-                total -=challenger[i];
+
+            if (current <= N) {
+                fail.put(current, fail.get(current) + 1);
             }
         }
-        return fails.entrySet().stream()
-            .sorted((o1,o2)-> o1.getValue().equals(o2.getValue()) ? 
-                    Integer.compare(o1.getKey(),o2.getKey()) : 
-                    Double.compare(o2.getValue(),o1.getValue()))         
-            .mapToInt(HashMap.Entry::getKey)
+
+        return Arrays.stream(answer)
+            .boxed()
+            .sorted((a, b) -> {
+                int totalA = pass.get(a) + fail.get(a);
+                int totalB = pass.get(b) + fail.get(b);
+
+                double aa = totalA == 0
+                    ? 0
+                    : (double) fail.get(a) / totalA;
+
+                double bb = totalB == 0
+                    ? 0
+                    : (double) fail.get(b) / totalB;
+
+                int compare = Double.compare(bb, aa);
+
+                if (compare == 0) {
+                    return Integer.compare(a, b);
+                }
+
+                return compare;
+            })
+            .mapToInt(Integer::intValue)
             .toArray();
-       
-        
     }
 }
