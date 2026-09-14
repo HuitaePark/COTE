@@ -1,38 +1,51 @@
 import java.util.*;
 class Solution {
     public int[] solution(String[] genres, int[] plays) {
-        List<Integer> answer = new ArrayList<>();
+        Map<String,Integer> cnt = new HashMap<>();
+        Map<Integer,String> idx = new HashMap<>();
+        
+        /*
+        장르의 재생횟수를 더함
+        인덱스별 장르를 저장
+        */
         for(int i=0;i<genres.length;i++){
-            answer.add(i);
+            cnt.put(genres[i],cnt.getOrDefault(genres[i],0)+plays[i]);
+            idx.put(i,genres[i]);
         }
-        Map<String,Integer> map = new HashMap<>();
+        
+        //조건대로 정렬하는 
+        List<Integer> list = new ArrayList<>();
+        
         for(int i=0;i<plays.length;i++){
-            map.put(genres[i],map.getOrDefault(genres[i],0)+plays[i]);
+            list.add(i);
         }
-        Collections.sort(answer,(a,b)->{
-            int g = map.get(genres[b])-map.get(genres[a]); //장르 앨범의 총합
-            if(g!=0) return g;
-            
-            int p = plays[b] - plays[a]; // 각자 판매량
-            if(p != 0) return p;
-            
-            return a-b; // 인덱스 오름차순
+        Collections.sort(list,(a,b)->{
+            if(cnt.get(idx.get(a))!=cnt.get(idx.get(b))) 
+                return cnt.get(idx.get(b))-cnt.get(idx.get(a));
+            if(plays[a]!=plays[b]) 
+                return plays[b]-plays[a];
+            return a-b;
         });
+        
+        List<Integer> answerList = new ArrayList<>();
         Map<String,Integer> count = new HashMap<>();
-        for(String s: map.keySet()){
+        
+        for(String s : cnt.keySet()){
             count.put(s,0);
         }
-        for(int i=0;i<answer.size();i++){
-            count.put(genres[answer.get(i)],count.get(genres[answer.get(i)])+1);
-        }
-
-        for(int i=answer.size()-1;i>=0;i--){
-            String currentGenres =  genres[answer.get(i)];
-            if(count.get(currentGenres)>2){
-                answer.remove(i);
-                count.put(currentGenres,count.get(currentGenres)-1);
+        
+        //두개씩 모아 삽입
+        int answerIdx = 0;
+        for(int i=0;i<list.size();i++){
+            int current = list.get(i);
+            if(count.get(genres[current])<2){
+                answerList.add(current);
+                count.put(genres[current],count.get(genres[current])+1);
             }
         }
-        return answer.stream().mapToInt(Integer::intValue).toArray();
+        
+        return answerList.stream()
+            .mapToInt(Integer::intValue)
+            .toArray();
     }
 }
