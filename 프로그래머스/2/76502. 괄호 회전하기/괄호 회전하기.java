@@ -1,63 +1,53 @@
 import java.util.*;
+
 class Solution {
-    char[] original;
-    char[] copy;
-    int answer = 0;
     public int solution(String s) {
-        original = new char[s.length()];
-        for(int i=0;i<s.length();i++){
-            original[i] = s.charAt(i);
+        int answer = 0;
+        List<Character> list = new ArrayList<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            list.add(s.charAt(i));
         }
-        if(isCorrect(original)) answer++;
-        copy = rolling(original);
-        
-        while(!isEqual(original,copy)){
-            if(isCorrect(copy)) answer++;
-            copy = rolling(copy);
+
+        // 글자 수만큼 반복
+        for (int i = 0; i < s.length(); i++) {
+
+            Stack<Character> stack = new Stack<>();
+            boolean isCorrect = true;
+
+            for (int j = 0; j < list.size(); j++) {
+                char current = list.get(j);
+
+                // 여는 괄호
+                if (current == '(' || current == '{' || current == '[') {
+                    stack.push(current);
+                }
+                // 닫는 괄호
+                else {
+                    if (stack.isEmpty()) {
+                        isCorrect = false;
+                        break;
+                    }
+
+                    char top = stack.pop();
+
+                    if (current == ')' && top != '(' ||
+                        current == '}' && top != '{' ||
+                        current == ']' && top != '[') {
+                        isCorrect = false;
+                        break;
+                    }
+                }
+            }
+
+            if (isCorrect && stack.isEmpty()) {
+                answer++;
+            }
+
+            // 왼쪽으로 한 칸 회전
+            list.add(list.remove(0));
         }
+
         return answer;
-    }
-    
-    char[] rolling(char[] arr){
-        char[] copy = new char[arr.length];
-        copy[copy.length-1] = arr[0];
-        for(int i=1;i<arr.length;i++){
-            copy[i-1] = arr[i];
-        }
-        return copy;
-    }
-    
-    boolean isEqual(char[] original,char[] copy){
-        for(int i=0;i<original.length;i++){
-            if(original[i]!=copy[i]) return false;
-        }
-        return true;
-    }
-    
-    boolean isCorrect(char[] arr){
-        Stack<Character> stack = new Stack<>();
-        for(int i=0;i<arr.length;i++){
-            if(stack.isEmpty()){
-                if(arr[i]==']' || arr[i]=='}' || arr[i]==')') return false;
-                else stack.push(arr[i]);
-            }
-            else if(stack.peek()=='['){
-                if(arr[i]==']') stack.pop();
-                else if(arr[i]=='}' || arr[i]==')') return false;
-                else stack.push(arr[i]);
-            }
-            else if(stack.peek()=='{'){
-                if(arr[i]=='}') stack.pop();
-                else if(arr[i]==']' || arr[i]==')') return false;
-                else stack.push(arr[i]);
-            }
-            else if(stack.peek()=='('){
-                if(arr[i]==')') stack.pop();
-                else if(arr[i]=='}' || arr[i]==']') return false;
-                else stack.push(arr[i]);
-            }
-        }
-        if(!stack.isEmpty()) return false;
-        return true;
     }
 }
