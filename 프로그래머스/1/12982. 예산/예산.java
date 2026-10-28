@@ -5,8 +5,9 @@ class Solution {
         Arrays.sort(d);
         int sum = 0;
         for(int i=0;i<d.length;i++){
+            if (sum+d[i] > budget) break;
             sum+=d[i];
-            if(sum<=budget) answer = i+1;
+            answer++;
         }
         return answer;
     }
